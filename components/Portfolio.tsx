@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
-import { TrendingUp, Users } from '@/components/icons/AnimatedIcons'
+import { TrendingUp, Users, ArrowRight } from '@/components/icons/AnimatedIcons'
 import { Calendar } from 'lucide-react'
 
 interface CaseStudy {
@@ -374,6 +374,12 @@ export function Portfolio() {
           </motion.div>
         </div>
       )}
+      <div className="flex justify-center">
+        <a href="/portfolio" className="btn-primary">
+          View Full Portfolio Projects
+          <ArrowRight animation="pulse" className="w-5 h-5 ml-2" />
+        </a>
+      </div>
     </div>
   )
 }

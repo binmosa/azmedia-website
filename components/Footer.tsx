@@ -7,22 +7,22 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
   
   const services = [
-    { name: 'Strategic Marketing', href: '#services' },
-    { name: 'Web Development', href: '#services' },
-    { name: 'Brand & Creative', href: '#services' },
-    { name: 'Project Estimation', href: '#estimate' }
+    { name: 'Strategic Marketing', href: '/#services' },
+    { name: 'Web Development', href: '/#services' },
+    { name: 'Brand & Creative', href: '/#services' },
+    { name: 'Project Estimation', href: '/#estimate' }
   ]
 
   const company = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Our Portfolio', href: '#portfolio' },
-    { name: 'Core Values', href: '#values' },
-    { name: 'Client Success', href: '#clients' }
+    { name: 'About Us', href: '/#about' },
+    { name: 'Our Portfolio', href: '/portfolio' },
+    { name: 'Core Values', href: '/#values' },
+    { name: 'Client Success', href: '/#clients' }
   ]
 
   const resources = [
-    { name: 'Free Consultation', href: '#contact' },
-    { name: 'Project Estimate', href: '#estimate' },
+    { name: 'Free Consultation', href: '/#contact' },
+    { name: 'Project Estimate', href: '/#estimate' },
     { name: 'Privacy Policy', href: '/privacy-and-policy' },
     { name: 'Terms of Service', href: '/terms-of-services' }
   ]
@@ -174,8 +174,8 @@ export function Footer() {
               <div className="bg-gradient-to-r from-brand-600 to-brand-500 p-4 rounded-xl">
                 <h5 className="text-white font-semibold mb-2">Ready to Start?</h5>
                 <p className="text-brand-100 text-sm mb-3">Get your free consultation today</p>
-                <a 
-                  href="#contact" 
+                <a
+                  href="/#contact"
                   className="inline-flex items-center gap-2 bg-white text-brand-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-50 transition-colors">
                   Let's Talk
                   <ExternalLink className="w-4 h-4" />

@@ -6,13 +6,13 @@ import { motion, LayoutGroup } from 'framer-motion'
 import { Phone, Calculator, Menu, X } from '@/components/icons/AnimatedIcons'
 
 const nav = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#services', label: 'Services' },
-  { href: '#values', label: 'Vision & Values' },
-  { href: '#clients', label: 'Clients' },
-  { href: '#estimate', label: 'Estimate' },
-  { href: '#contact', label: 'Contact' }
+  { href: '/#home', label: 'Home' },
+  { href: '/#about', label: 'About' },
+  { href: '/#services', label: 'Services' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/#clients', label: 'Clients' },
+  { href: '/#estimate', label: 'Estimate' },
+  { href: '/#contact', label: 'Contact' }
 ]
 
 export function Header() {
@@ -109,11 +109,11 @@ export function Header() {
         </LayoutGroup>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="#estimate" className="btn-ghost text-sm">
+          <a href="/#estimate" className="btn-ghost text-sm">
             <Calculator animation="pulse" size={16} className="mr-2"/>
             Get a Quote
           </a>
-          <a href="#contact" className="btn-primary text-sm">
+          <a href="/#contact" className="btn-primary text-sm">
             <Phone animation="pulse" size={16} className="mr-2"/>
             Book a Call
           </a>
@@ -152,11 +152,11 @@ export function Header() {
               </a>
             ))}
             <div className="mt-4 pt-4 border-t border-brand-100 space-y-3">
-              <a href="#estimate" onClick={() => setOpen(false)} className="inline-flex items-center justify-start w-full px-4 py-2.5 bg-white border border-brand-200 hover:border-brand-300 text-brand-700 hover:text-brand-800 hover:bg-brand-50 rounded-xl font-semibold transition-all duration-300 shadow-sm hover:shadow-md">
+              <a href="/#estimate" onClick={() => setOpen(false)} className="inline-flex items-center justify-start w-full px-4 py-2.5 bg-white border border-brand-200 hover:border-brand-300 text-brand-700 hover:text-brand-800 hover:bg-brand-50 rounded-xl font-semibold transition-all duration-300 shadow-sm hover:shadow-md">
                 <Calculator animation="pulse" size={18} className="mr-3"/>
                 Get a Quote
               </a>
-              <a href="#contact" onClick={() => setOpen(false)} className="btn-primary w-full justify-start">
+              <a href="/#contact" onClick={() => setOpen(false)} className="btn-primary w-full justify-start">
                 <Phone animation="pulse" size={18} className="mr-3"/>
                 Book a Call
               </a>
