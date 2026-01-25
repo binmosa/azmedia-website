@@ -24,7 +24,9 @@ import {
   Layers,
   CheckCircle2,
   Building2,
-  Phone
+  Phone,
+  Play,
+  Film
 } from 'lucide-react'
 
 // Solution badge types with colors
@@ -248,6 +250,39 @@ const portfolioItems: PortfolioItem[] = [
 
 const categories = ['All', 'Digital Marketing', 'Web & Digital', 'Media & Branding', 'Branding Showcase']
 
+// Video portfolio items
+interface VideoItem {
+  id: string
+  title: string
+  description: string
+  youtubeId: string
+  thumbnail: string
+}
+
+const videoItems: VideoItem[] = [
+  {
+    id: 'video-1',
+    title: 'Brand Motion Graphics',
+    description: 'Dynamic motion graphics showcasing brand identity and visual storytelling.',
+    youtubeId: 'b9V9HugDFQM',
+    thumbnail: 'https://img.youtube.com/vi/b9V9HugDFQM/maxresdefault.jpg'
+  },
+  {
+    id: 'video-2',
+    title: 'Promotional Video',
+    description: 'Engaging promotional content designed to captivate and convert audiences.',
+    youtubeId: 'arU20gsPyqg',
+    thumbnail: 'https://img.youtube.com/vi/arU20gsPyqg/maxresdefault.jpg'
+  },
+  {
+    id: 'video-3',
+    title: 'Creative Animation',
+    description: 'Creative animated content that brings ideas to life with visual impact.',
+    youtubeId: 'boxgb_wqFLM',
+    thumbnail: 'https://img.youtube.com/vi/boxgb_wqFLM/maxresdefault.jpg'
+  }
+]
+
 // Category badge colors
 const categoryColors: Record<string, string> = {
   'Digital Marketing': 'bg-amber-500/10 text-amber-700 border-amber-200',
@@ -271,6 +306,7 @@ function SolutionBadge({ solution }: { solution: SolutionKey }) {
 export function PortfolioPageContent() {
   const [activeCategory, setActiveCategory] = useState<string>('All')
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null)
+  const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null)
 
   const filteredItems = activeCategory === 'All'
     ? portfolioItems
@@ -464,6 +500,81 @@ export function PortfolioPageContent() {
               ))}
             </AnimatePresence>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Motion Graphics & Videos Section */}
+      <section className="py-20 md:py-32 bg-gradient-to-b from-slate-50 to-white">
+        <div className="container">
+          {/* Section header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-100 to-purple-50 text-violet-800 px-6 py-3 rounded-full text-lg font-semibold mb-8 shadow-sm">
+              <Film className="w-4 h-4 text-violet-600" />
+              Motion Graphics
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+              Videos &{' '}
+              <span className="bg-gradient-to-r from-violet-600 to-purple-400 bg-clip-text text-transparent">
+                Motion Graphics
+              </span>
+            </h2>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Bringing brands to life through captivating motion graphics and video content
+              that tells your story with <strong className="text-violet-600">visual impact</strong>.
+            </p>
+          </div>
+
+          {/* Videos Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {videoItems.map((video, index) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group cursor-pointer"
+                onClick={() => setSelectedVideo(video)}
+              >
+                <div className="card overflow-hidden hover:shadow-2xl transition-all duration-500 group-hover:ring-2 group-hover:ring-violet-200">
+                  {/* Thumbnail */}
+                  <div className="relative aspect-video bg-gradient-to-br from-violet-100 via-purple-50 to-violet-200 overflow-hidden">
+                    <Image
+                      src={video.thumbnail}
+                      alt={video.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300" />
+
+                    {/* Play button overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 bg-white/95 backdrop-blur rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <Play className="w-7 h-7 text-violet-600 ml-1" fill="currentColor" />
+                      </div>
+                    </div>
+
+                    {/* Video badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-flex items-center gap-1.5 text-xs bg-violet-500/90 backdrop-blur text-white px-3 py-1.5 rounded-full font-medium">
+                        <Film className="w-3.5 h-3.5" />
+                        Video
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="font-bold text-lg mb-2 group-hover:text-violet-700 transition-colors">
+                      {video.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      {video.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -725,6 +836,52 @@ export function PortfolioPageContent() {
                     Discuss Your Needs
                   </Link>
                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {selectedVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+            onClick={() => setSelectedVideo(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-5xl aspect-video"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedVideo(null)}
+                className="absolute -top-12 right-0 w-10 h-10 bg-white/10 backdrop-blur hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Video title */}
+              <div className="absolute -top-12 left-0 text-white font-semibold text-lg">
+                {selectedVideo.title}
+              </div>
+
+              {/* YouTube iframe */}
+              <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl bg-black">
+                <iframe
+                  src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
+                  title={selectedVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
               </div>
             </motion.div>
           </motion.div>
